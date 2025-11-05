@@ -1,0 +1,27 @@
+name = "cf-se-intern-ai-coach"
+main = "src/worker.js"
+compatibility_date = "2025-01-01"
+
+# Serve static assets like index.html, main.js, styles.css
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+# Workers AI binding
+[ai]
+binding = "AI"
+
+# Durable Object binding
+[[durable_objects.bindings]]
+name = "USER_COACH"
+class_name = "UserCoachDO"
+
+# Migration for the Durable Object
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["UserCoachDO"]
+
+# Observability is now required (this fixes your error)
+[observability]
+enabled = true
+logs.enabled = true
