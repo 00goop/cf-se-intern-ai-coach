@@ -7,13 +7,15 @@
     "dev": "wrangler dev",
     "start": "wrangler dev",
     "deploy": "wrangler deploy",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test": "node --test",
+    "build": "wrangler deploy --dry-run --outdir dist"
   },
-  "dependencies": {},
   "devDependencies": {
-    "wrangler": "^3.80.0",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "wrangler": "^4.131.0"
   },
-  "author": "Your Name",
-  "license": "MIT"
+  "author": "Guttu Abajebel",
+  "license": "MIT",
+  "type": "module"
 }
