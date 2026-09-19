@@ -22,7 +22,7 @@ export class UserCoachDO extends DurableObject {
   }
 
   #buildPrompt(message, meta) {
-    const { name, role, email } = meta || {};
+    const { name, background, focus } = meta || {};
 
     const systemPrompt = `You are a friendly, helpful Cloudflare Solutions Engineer intern coach.
 
@@ -49,7 +49,7 @@ Key guidelines:
             .map((turn) => `${turn.role === "user" ? "User" : "Assistant"}: ${turn.content}`)
             .join("\n");
 
-    const userContext = name ? `The user's name is ${name}.` : "";
+    const userContext = [name && `Name: ${name}`, background && `Background: ${background}`, focus && `Focus: ${focus}`].filter(Boolean).join('\n');
 
     // Build a focused prompt
     let fullPrompt = systemPrompt;

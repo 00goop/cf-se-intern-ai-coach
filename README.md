@@ -1,5 +1,24 @@
 # ☁️ Cloudflare SE Intern AI Coach
 
+## Verified setup and session boundaries
+
+Use Node.js 22+ and HTTPS (localhost is also a secure browser context).
+Run `npm ci`, `npm test`, and `npm run build` for a deployment dry run.
+`npm run dev` starts local Wrangler development. Deployment requires your own
+Cloudflare account and bindings from `wrangler.toml`; no deployment is automatic.
+
+Requests require a cryptographically generated UUID session identifier. Missing
+or predictable identifiers no longer share a default conversation. The UUID is
+a bearer capability stored in localStorage, **not account authentication**; do
+not share it. Chat history responses are not cacheable. Inputs are bounded and
+provider errors are sanitized. Email stays in the local profile and is not sent
+to the coach's prompt/storage by the handler.
+
+Generated `node_modules/` and `.wrangler/` files have been removed from the current
+tracked tree. They still exist in Git history; this change does not rewrite history
+or certify that historical state contains no private data. Inspect and rotate any
+credentials identified in history before making stronger security claims.
+
 An AI-powered web app built on the **Cloudflare Developer Platform** to help candidates prepare and stand out for the **Cloudflare Solutions Engineer Internship**.
 
 The app:
